@@ -4,9 +4,6 @@ FileVersion = 1
 Name = "blake3-beef"
 DefaultNamespace = "blake3"
 
-# [Configs.Debug.Win64]
-# LibPaths = ["$(ProjectDir)\\libs\\windows\\x64\\blake3_d.lib"]
-
 [Configs.Debug.Win64]
 LibPaths = ["$(ProjectDir)\\libs\\x86_64-windows-msvc\\blake3_d.lib"]
 

@@ -61,7 +61,7 @@ jobs:
         uses: robinraju/release-downloader@v1
         with:
           repository: 'farism/Beef'
-          tag: 'nightly-07-17-2026'
+          tag: 'nightly-07-18-2026'
           fileName: '${{ matrix.os }}.zip'
           extract: true
           extract-path: 'BeefBuild'
