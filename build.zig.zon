@@ -1,0 +1,17 @@
+.{
+    .name = .blake3_beef,
+    .version = "0.0.0",
+    .fingerprint = 0xec3670763a0ac98f,
+    .minimum_zig_version = "0.16.0",
+    .dependencies = .{
+        .upstream = .{
+            .url = "git+https://github.com/BLAKE3-team/BLAKE3.git#d30b38db0001457963a7fbe1e759e443c911bd9d",
+            .hash = "N-V-__8AABCJGwCkFtUbBIN3KhnhvHLpuPycCBpZ3wqt6CVu",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}

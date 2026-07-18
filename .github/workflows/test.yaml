@@ -1,0 +1,77 @@
+name: Test
+
+run-name: Run tests for all platforms
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: windows-latest
+            target: x86_64-windows-msvc
+            platform: Win64
+          # - os: windows-11-arm
+          #   target: aarch64-windows-gnu
+          #   platform: aarch64-windows-gnu
+          - os: ubuntu-latest
+            target: x86_64-linux-musl
+            platform: Linux64
+          - os: ubuntu-24.04-arm
+            target: aarch64-linux-gnu
+            platform: aarch64-linux-gnu
+          - os: macos-latest
+            target: aarch64-macos
+            platform: macOS
+          - os: macos-15-intel
+            target: x86_64-macos
+            platform: macOS
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ github.token }}
+
+      # - name: Install Zig
+      #   uses: mlugg/setup-zig@v2
+      #   with:
+      #     version: 0.16.0
+
+      # - name: Build C libs
+      #   run: zig build --prefix libs -Dtarget=${{ matrix.target }}
+
+      - name: Install deps (Ubuntu)
+        if: contains(matrix.os, 'ubuntu')
+        run: |
+          wget https://apt.llvm.org/llvm.sh
+          chmod +x llvm.sh
+          sudo ./llvm.sh 22
+          sudo apt-get install -y libhunspell-dev llvm-22-dev
+
+      - name: Install deps (MacOS)
+        if: contains(matrix.os, 'macos')
+        run: |
+          brew install hunspell llvm@22
+          echo "$(brew --prefix llvm@22)/bin" >> $GITHUB_PATH
+
+      - name: Download BeefBuild
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: 'farism/Beef'
+          tag: 'nightly-07-17-2026'
+          fileName: '${{ matrix.os }}.zip'
+          extract: true
+          extract-path: 'BeefBuild'
+
+      - name: Set Permissions
+        run: chmod +x ./BeefBuild/BeefBuild
+
+      - name: Set static lib path (macOS)
+        if: contains(matrix.os, 'macos-15-intel')
+        run: sed -i.bak 's/aarch64-macos/x86_64-macos/g' BeefProj.toml
+
+      - name: BeefBuild -test
+        run: ./BeefBuild/BeefBuild -test -platform=${{ matrix.platform }}

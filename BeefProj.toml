@@ -1,0 +1,50 @@
+FileVersion = 1
+
+[Project]
+Name = "blake3-beef"
+DefaultNamespace = "blake3"
+
+[Configs.Debug.Win64]
+LibPaths = ["$(ProjectDir)\\libs\\x86_64-windows-msvc\\blake3_d.lib"]
+
+[Configs.Debug.aarch64-windows-gnu]
+LibPaths = ["$(ProjectDir)\\libs\\x86_64-windows-gnu\\blake3_d.lib"]
+
+[Configs.Debug.Linux64]
+LibPaths = ["$(ProjectDir)\\libs\\x86_64-linux-musl\\libblake3_d.a"]
+
+[Configs.Debug.aarch64-linux-gnu]
+LibPaths = ["$(ProjectDir)\\libs\\aarch64-linux-gnu\\libblake3_d.a"]
+
+[Configs.Debug.macOS]
+LibPaths = ["$(ProjectDir)\\libs\\aarch64-macos\\libblake3_d.a"]
+
+[Configs.Release.Win64]
+LibPaths = ["$(ProjectDir)\\libs\\x86_64-windows-msvc\\blake3.lib"]
+
+[Configs.Release.aarch64-windows-gnu]
+LibPaths = ["$(ProjectDir)\\libs\\x86_64-windows-gnu\\blake3.lib"]
+
+[Configs.Release.Linux64]
+LibPaths = ["$(ProjectDir)\\libs\\x86_64-linux-musl\\libblake3.a"]
+
+[Configs.Release.aarch64-linux-gnu]
+LibPaths = ["$(ProjectDir)\\libs\\aarch64-linux-gnu\\libblake3.a"]
+
+[Configs.Release.macOS]
+LibPaths = ["$(ProjectDir)\\libs\\aarch64-macos\\libblake3.a"]
+
+[Configs.Test.Win64]
+LibPaths = ["$(ProjectDir)\\libs\\x86_64-windows-msvc\\blake3_d.lib"]
+
+[Configs.Test.aarch64-windows-gnu]
+LibPaths = ["$(ProjectDir)\\libs\\x86_64-windows-gnu\\blake3_d.lib"]
+
+[Configs.Test.Linux64]
+LibPaths = ["$(ProjectDir)\\libs\\x86_64-linux-musl\\libblake3_d.a"]
+
+[Configs.Test.aarch64-linux-gnu]
+LibPaths = ["$(ProjectDir)\\libs\\aarch64-linux-gnu\\libblake3_d.a"]
+
+[Configs.Test.macOS]
+LibPaths = ["$(ProjectDir)\\libs\\aarch64-macos\\libblake3_d.a"]
