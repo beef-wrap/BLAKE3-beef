@@ -52,6 +52,12 @@ pub fn build(b: *std.Build) !void {
 
             mod.addCSourceFiles(.{ .root = upstream.path(""), .files = sources });
 
+            mod.addCMacro("BLAKE3_USE_NEON", "0");
+            mod.addCMacro("BLAKE3_NO_SSE2", "");
+            mod.addCMacro("BLAKE3_NO_SSE41", "");
+            mod.addCMacro("BLAKE3_NO_AVX2", "");
+            mod.addCMacro("BLAKE3_NO_AVX512", "");
+
             const lib = b.addLibrary(.{
                 .name = if (o == .Debug) lib_name_debug else lib_name,
                 .linkage = .static,
