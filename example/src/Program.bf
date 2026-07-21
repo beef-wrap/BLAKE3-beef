@@ -6,6 +6,7 @@ using static blake3.blake3;
 
 namespace example;
 
+
 static class Program
 {
 	static int Main(params String[] args)
@@ -37,3 +38,5 @@ static class Program
 		return 0;
 	}
 }
+
+

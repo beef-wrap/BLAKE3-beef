@@ -8,6 +8,9 @@
             .url = "git+https://github.com/BLAKE3-team/BLAKE3.git#d30b38db0001457963a7fbe1e759e443c911bd9d",
             .hash = "N-V-__8AABCJGwCkFtUbBIN3KhnhvHLpuPycCBpZ3wqt6CVu",
         },
+        .zbh = .{
+            .path = "../zig-build-helpers",
+        },
     },
     .paths = .{
         "build.zig",
